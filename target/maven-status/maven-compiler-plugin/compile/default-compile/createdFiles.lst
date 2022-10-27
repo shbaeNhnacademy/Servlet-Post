@@ -1,0 +1,10 @@
+com/nhnacademy/domain/user/GeneralUser.class
+com/nhnacademy/domain/repository/MemoryUserRepository.class
+com/nhnacademy/domain/repository/UserRepository.class
+com/nhnacademy/domain/post/Post.class
+com/nhnacademy/listener/WebAppListener.class
+com/nhnacademy/domain/repository/PostRepository.class
+com/nhnacademy/domain/post/NhnPost.class
+com/nhnacademy/domain/user/User.class
+com/nhnacademy/domain/user/Admin.class
+com/nhnacademy/domain/repository/MemoryPostRepository.class
