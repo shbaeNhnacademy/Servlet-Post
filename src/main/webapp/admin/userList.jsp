@@ -35,9 +35,9 @@
 <body>
 <form method="post" action="/users/modify.do">
   <c:forEach var="user" items="${userRepository.getUsers()}">
-    <input type="checkbox" name="${user.getId()}" > <span> ${user.getName()}  img: ${user.getProfileFileName()}  </span>
+    <input type="checkbox" name="${user.getId()}" > <span> ${user.getName()}  img: ${user.getProfileFileName()}  </span> <br>
   </c:forEach>
-  <input type="submit" value="${submit}">
+  <br><br><input type="submit" value="${submit}">
 </form>
 
 
