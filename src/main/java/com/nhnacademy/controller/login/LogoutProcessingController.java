@@ -1,4 +1,4 @@
-package com.nhnacademy.controller;
+package com.nhnacademy.controller.login;
 
 import com.nhnacademy.command.Command;
 
@@ -14,7 +14,6 @@ public class LogoutProcessingController implements Command {
         if (!Objects.isNull(session)) {
             session.invalidate();
         }
-//        return "/loginForm.jsp";
         return "redirect:/login.do";
     }
 }

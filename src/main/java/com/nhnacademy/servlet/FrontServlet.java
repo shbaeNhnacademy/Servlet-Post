@@ -2,6 +2,11 @@ package com.nhnacademy.servlet;
 
 import com.nhnacademy.command.Command;
 import com.nhnacademy.controller.*;
+import com.nhnacademy.controller.cookie.CookieProcessingController;
+import com.nhnacademy.controller.cookie.CookieUpdateController;
+import com.nhnacademy.controller.login.LoginProcessingController;
+import com.nhnacademy.controller.login.LoginUpdateController;
+import com.nhnacademy.controller.login.LogoutProcessingController;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.RequestDispatcher;
@@ -43,22 +48,36 @@ public class FrontServlet extends HttpServlet {
     private Command resolveServlet(String commandPath,String method) {
         Command command = null;
 
+        if ("/login.do".equals(commandPath) && "GET".equalsIgnoreCase(method)) {
+            command = new LoginProcessingController();
+        } else if ("/login.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
+            command = new LoginUpdateController();
+        } else if ("/logout.do".equals(commandPath) && "GET".equalsIgnoreCase(method)) {
+            command = new LogoutProcessingController();
+        } else if ("/read-cookie.do".equals(commandPath) && "GET".equalsIgnoreCase(method)) {
+            command = new CookieProcessingController();
+        } else if ("/set-cookie.do".equals(commandPath) && "GET".equalsIgnoreCase(method)) {
+            command = new CookieUpdateController();
+        } else if ("/read-cookie.do".equals(commandPath) && "GET".equalsIgnoreCase(method)) {
+            command = new CookieProcessingController();
+        } else if ("/set-cookie.do".equals(commandPath) && "GET".equalsIgnoreCase(method)) {
+            command = new CookieUpdateController();
+        } else {
+            command = businessLogicCommand(commandPath, method);
+        }
+        return command;
+    }
+
+    private Command businessLogicCommand(String commandPath,String method) {
+        Command command = null;
         if ("/posts.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
             command = new PostRegisterController();
-        }else if ("/login.do".equals(commandPath) && "GET".equalsIgnoreCase(method)) {
-            command = new LoginProcessingController();
-        }else if ("/login.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
-            command = new LoginUpdateController();
-        }else if ("/logout.do".equals(commandPath) && "GET".equalsIgnoreCase(method)) {
-            command = new LogoutProcessingController();
-        }else if ("/read-cookie.do".equals(commandPath) && "GET".equalsIgnoreCase(method)) {
-            command = new CookieProcessingController();
-        }else if ("/set-cookie.do".equals(commandPath) && "GET".equalsIgnoreCase(method)) {
-            command = new CookieUpdateController();
-        }else if ("/read-cookie.do".equals(commandPath) && "GET".equalsIgnoreCase(method)) {
-            command = new CookieProcessingController();
-        }else if ("/set-cookie.do".equals(commandPath) && "GET".equalsIgnoreCase(method)) {
-            command = new CookieUpdateController();
+        } else if ("/users.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
+            command = new UserAddController();
+        } else if ("/users.do".equals(commandPath) && "GET".equalsIgnoreCase(method)) {
+            command = new UserListController();
+        }else if ("/users/modify.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
+            command = new UserUpdateController();
         }
         return command;
     }

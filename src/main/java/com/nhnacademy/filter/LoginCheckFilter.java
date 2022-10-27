@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @WebFilter(filterName = "loginCheckFilter",urlPatterns = "/*",initParams = {
-        @WebInitParam(name = "exclude-urls",value = "loginForm.jsp\n" +
+        @WebInitParam(name = "exclude-urls",value = "/login/loginForm.jsp\n" +
                 "/\n" +
                 "/login.do\n" +
                 "/index.jsp\n" +

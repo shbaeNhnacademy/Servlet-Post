@@ -12,10 +12,15 @@
 </head>
 <body>
 Main
-<br /><a href="registerPost.jsp">register post</a> <br />
+<br /><a href="user/registerPost.jsp">register post</a> <br />
 
 <br /><a href="login.do">LOGIN</a> <br />
 
+<br />
+<br />
+<br />
+<a href="/set-cookie.do?locale=ko">한국어</a>
+<a href="/set-cookie.do?locale=en">English</a>
 
 </body>
 </html>

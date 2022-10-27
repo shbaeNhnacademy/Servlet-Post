@@ -1,4 +1,4 @@
-package com.nhnacademy.controller;
+package com.nhnacademy.controller.cookie;
 
 import com.nhnacademy.command.Command;
 import com.nhnacademy.listener.WebAppListener;

@@ -11,17 +11,11 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,7 +37,7 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
         UserRepository userRepository = new MemoryUserRepository();
         PostRepository postRepository = new MemoryPostRepository();
 
-        // 사용자 등록
+        // TODO 테스트 사용자 등록
         registerUsers(userRepository);
 
         servletContext.setAttribute("userRepository", userRepository);
