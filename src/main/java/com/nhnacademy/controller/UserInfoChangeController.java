@@ -4,6 +4,7 @@ import com.nhnacademy.command.Command;
 import com.nhnacademy.command.CommandUtil;
 import com.nhnacademy.domain.repository.UserRepository;
 import com.nhnacademy.domain.user.GeneralUser;
+import com.nhnacademy.domain.user.User;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletException;
@@ -12,40 +13,55 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 @Slf4j
-public class UserAddController implements Command {
-
-
+public class UserInfoChangeController implements Command {
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
-        //id,pwd,name,profile 로 들어온 데이터를 userRepository 받아서 setAtrrbute 하기
-
         UserRepository userRepository = (UserRepository) req.getServletContext().getAttribute("userRepository");
 
         String id = req.getParameter("id");
-        String pwd = req.getParameter("pwd");
-        String name = req.getParameter("name");
 
-        //TODO 권한 부여해서 .sh 파일로 전달?
-//        String UPLOAD_DIR = "/WEB-INF/classes/img";
+        User user = userRepository.getUser(id);
+        if (!Objects.isNull(user) && user.getId().equals(id)) {
+            // 변경한건지 확인 필요
+            String pwd = req.getParameter("pwd");
+            String name = req.getParameter("name");
+            if (!user.getPassword().equals(pwd) && !pwd.equals("")) {
+                //pwd가 공백이 아니고 이전 비밀번호와 값이 같지 않다면 변경
+                user.setPassword(pwd);
+            }
+            if (!user.getName().equals(name) && !name.equals("")) {
+                //name이 공백이 아니고 이전 이름과 값이 같지 않다면 변경
+                user.setName(name);
+            }
+            String file = verifyChangingFile(req, user);
+            if (!file.equals("")) {
+                user.setProfileFileName(file);
+            }
+            log.warn("{}",userRepository.getUsers());
+            return "/admin/userList.jsp";
+        }else {
+            //null으로 아예 안들어 왔거나, 맞는 아이디가 없거나 -> userList.jsp로 바로 넘겨버리기
+            return "redirect:/admin/userList.jsp";
+        }
 
+    }
+
+    private String verifyChangingFile(HttpServletRequest req, User user) {
         try {
             for (Part part : req.getParts()) {
                 String contentDisposition = part.getHeader(CommandUtil.CONTENT_DISPOSITION);
 
                 if (contentDisposition.contains("filename=")) {
                     String fileName = CommandUtil.extractFileName(contentDisposition);
-
-                    if (part.getSize() > 0) {
+                    if (!user.getProfileFileName().equals(fileName) && part.getSize() > 0) {
                         String filePath = CommandUtil.UPLOAD_DIR + File.separator + fileName;
                         part.write(filePath); //임시 저장된 파일을 내가 원하는 곳에 쓰고
                         part.delete(); //임시파일은 지워버림
-
-                        GeneralUser user = new GeneralUser(id, pwd, name);
-                        user.setProfileFileName(fileName);
-                        userRepository.add(user);
+                        return fileName;
                     }
                 }
             }
@@ -54,10 +70,6 @@ public class UserAddController implements Command {
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
-
-
-        return "/admin/addUser.jsp";
+        return "";
     }
-
-
 }

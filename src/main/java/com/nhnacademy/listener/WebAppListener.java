@@ -100,11 +100,5 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
 
     }
 
-    public static Cookie getCookie(HttpServletRequest req, String name) {
-        return Optional.ofNullable(req.getCookies())
-                .flatMap(cookies -> Arrays.stream(cookies)
-                        .filter(c -> c.getName().equals(name))
-                        .findFirst())
-                .orElse(null);
-    }
+
 }

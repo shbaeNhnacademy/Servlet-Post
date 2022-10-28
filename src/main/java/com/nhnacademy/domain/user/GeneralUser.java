@@ -5,7 +5,7 @@ import lombok.NonNull;
 import lombok.ToString;
 
 @Data
-@ToString(exclude = {"id", "password", "profilePath"})
+@ToString(exclude = {"id", "password"})
 public class GeneralUser implements User {
 
     @NonNull
@@ -14,7 +14,6 @@ public class GeneralUser implements User {
     private String password;
     @NonNull
     private String name;
-    private String profileFileName; // TODO /profile?id=[profileFileName] 이렇게 쓰이나?
-    private String profilePath;
+    private String profileFileName = ""; // TODO /profile?id=[profileFileName] 이렇게 쓰이나?
 
 }

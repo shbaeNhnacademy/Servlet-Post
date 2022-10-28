@@ -1,6 +1,7 @@
 package com.nhnacademy.controller.cookie;
 
 import com.nhnacademy.command.Command;
+import com.nhnacademy.command.CommandUtil;
 import com.nhnacademy.listener.WebAppListener;
 
 import javax.servlet.http.Cookie;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CookieProcessingController implements Command {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
-        Cookie localeCookie = WebAppListener.getCookie(req, "locale");
+        Cookie localeCookie = CommandUtil.getCookie(req, "locale");
         String locale = localeCookie.getValue();
         req.getServletContext().setAttribute("locale", locale);
 

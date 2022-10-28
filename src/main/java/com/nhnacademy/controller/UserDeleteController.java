@@ -23,7 +23,6 @@ public class UserDeleteController implements Command {
 
         Map<String, HttpSession> sessionMap = (Map<String, HttpSession>) req.getServletContext().getAttribute("sessionMap");
 
-        System.out.println("UserDeleteController.execute");
 
         Enumeration<String> names = req.getParameterNames();
         while (names.hasMoreElements()) {
