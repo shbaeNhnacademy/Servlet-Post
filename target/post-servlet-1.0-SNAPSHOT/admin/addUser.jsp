@@ -24,7 +24,7 @@
 <h2>Add User for Administrator</h2>
 <hr>
 
-<form method="post" action="/users.do">
+<form method="post" action="/users.do" enctype="multipart/form-data">
     ID <input type="text"  name="id" placeholder="ID" />
     <br/>
     <br/>

@@ -38,7 +38,7 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
         PostRepository postRepository = new MemoryPostRepository();
 
         // TODO 테스트 사용자 등록
-        registerUsers(userRepository);
+//        registerUsers(userRepository);
 
         servletContext.setAttribute("userRepository", userRepository);
         servletContext.setAttribute("postRepository", postRepository);

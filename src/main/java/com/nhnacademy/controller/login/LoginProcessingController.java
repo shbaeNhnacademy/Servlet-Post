@@ -11,7 +11,6 @@ public class LoginProcessingController implements Command {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
         HttpSession session = req.getSession(false);
-        System.out.println("session = " + session);
         if (Objects.isNull(session)) {
             return "/login/loginForm.jsp";
         } else {

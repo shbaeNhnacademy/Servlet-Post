@@ -25,7 +25,6 @@
 
 <a href="/users.do">${u_list}</a> <br> <br> <br>
 <a href="/admin/addUser.jsp">${u_add}</a> <br> <br> <br>
-
 <br /> <a href='/'>HOME</a><br />
 </body>
 </html>

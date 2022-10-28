@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Slf4j
+@MultipartConfig(
+        location = "/tmp/",
+        maxFileSize = -1L,
+        maxRequestSize = -1L,
+        fileSizeThreshold = 1024
+)
 @WebServlet(name = "frontServlet", urlPatterns = "*.do")
 public class FrontServlet extends HttpServlet {
     private static final String REDIRECT_PREFIX = "redirect:";
