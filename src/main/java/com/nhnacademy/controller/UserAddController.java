@@ -24,15 +24,11 @@ public class UserAddController implements Command {
 
         UserRepository userRepository = (UserRepository) req.getServletContext().getAttribute("userRepository");
 
-        System.out.println("userRepository.getUsers() = " + userRepository.getUsers());
-
         String id = req.getParameter("id");
         String pwd = req.getParameter("pwd");
         String name = req.getParameter("name");
 
 //        String UPLOAD_DIR = "/WEB-INF/classes/img";
-
-//        System.out.println("UPLOAD_DIR = " + UPLOAD_DIR + "   " + id + " " + pwd + " " + name);
 
         try {
             for (Part part : req.getParts()) {
@@ -51,10 +47,11 @@ public class UserAddController implements Command {
                         user.setProfilePath(filePath);
                         userRepository.add(user);
                     }
-                } else {
-                    String formValue = req.getParameter(part.getName());
-                    log.error("{}={}", part.getName(), formValue);
                 }
+//                else {
+//                    String formValue = req.getParameter(part.getName());
+//                    log.error("{}={}", part.getName(), formValue);
+//                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

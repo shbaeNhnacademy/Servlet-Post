@@ -30,7 +30,7 @@ public class MemoryUserRepository implements UserRepository {
 
     @Override
     public User remove(String id) {
-        return userMap.remove(userMap.get(id));
+        return userMap.remove(userMap.get(id).getId());
     }
 
     @Override

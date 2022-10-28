@@ -84,7 +84,9 @@ public class FrontServlet extends HttpServlet {
         } else if ("/users.do".equals(commandPath) && "GET".equalsIgnoreCase(method)) {
             command = new UserListController();
         }else if ("/users/modify.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
-            command = new UserUpdateController();
+            command = new UserModifyController();
+        }else if ("/users/delete.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
+            command = new UserDeleteController();
         }
         return command;
     }

@@ -14,12 +14,11 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @WebListener
@@ -38,7 +37,7 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
         PostRepository postRepository = new MemoryPostRepository();
 
         // TODO 테스트 사용자 등록
-//        registerUsers(userRepository);
+        registerUsers(userRepository);
 
         servletContext.setAttribute("userRepository", userRepository);
         servletContext.setAttribute("postRepository", postRepository);
@@ -55,6 +54,12 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
             log.error("", e);
         }
         servletContext.setAttribute("visitCount", visitCount);
+
+        //sessionMap 생성 및 context 속성에 set
+        Map<String, HttpSession> sessionMap = new ConcurrentHashMap<>();
+        servletContext.setAttribute("sessionMap", sessionMap);
+
+
         log.error("Listener Start count : {}", visitCount);
     }
 
@@ -68,6 +73,7 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
 
         int viewCount = (int) servletContext.getAttribute("viewCount");
 
+        //TODO 주석빼고 방문횟수 저장해야함
 //        try(OutputStream os = Files.newOutputStream(Paths.get(servletContext.getResource(filePath).toURI()));
 //            DataOutputStream dos = new DataOutputStream(os);)
 //        {

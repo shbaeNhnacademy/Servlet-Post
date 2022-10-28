@@ -16,7 +16,8 @@
 
 <fmt:message key="USER_LIST" bundle="${message}" var="u_list" />
 <fmt:message key="USER_ADD" bundle="${message}" var="u_add" />
-<fmt:message key="SUBMIT" bundle="${message}" var="submit" />
+<fmt:message key="MODIFY" bundle="${message}" var="modify" />
+<fmt:message key="DELETE" bundle="${message}" var="delete" />
 
 <%
   UserRepository userRepository = (UserRepository) application.getAttribute("userRepository");
@@ -33,11 +34,14 @@
     <title>User List</title>
 </head>
 <body>
-<form method="post" action="/users/modify.do">
+<form method="post" >
   <c:forEach var="user" items="${userRepository.getUsers()}">
-    <input type="checkbox" name="${user.getId()}" > <span> ${user.getName()}  img: ${user.getProfileFileName()}  </span> <br>
+    <input type="checkbox" name="${user.getId()}" > <span> ${user.getName()}  /  ${user.getProfileFileName()}  </span> <br>
   </c:forEach>
-  <br><br><input type="submit" value="${submit}">
+  <br><br>
+  <input type="submit" value="${modify}" onclick="javascript: form.action='/users/modify.do';"/>
+  <input type="submit" value="${delete}" onclick="javascript: form.action='/users/delete.do';"/>
+<%--  <br><br><input type="submit" value="${m}">--%>
 </form>
 
 
