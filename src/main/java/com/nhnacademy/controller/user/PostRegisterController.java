@@ -1,4 +1,4 @@
-package com.nhnacademy.controller;
+package com.nhnacademy.controller.user;
 
 import com.nhnacademy.command.Command;
 import com.nhnacademy.domain.post.ConcretePost;

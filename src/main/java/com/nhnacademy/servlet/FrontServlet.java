@@ -1,12 +1,13 @@
 package com.nhnacademy.servlet;
 
 import com.nhnacademy.command.Command;
-import com.nhnacademy.controller.*;
+import com.nhnacademy.controller.admin.*;
 import com.nhnacademy.controller.cookie.CookieProcessingController;
 import com.nhnacademy.controller.cookie.CookieUpdateController;
 import com.nhnacademy.controller.login.LoginProcessingController;
 import com.nhnacademy.controller.login.LoginUpdateController;
 import com.nhnacademy.controller.login.LogoutProcessingController;
+import com.nhnacademy.controller.user.PostRegisterController;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.RequestDispatcher;

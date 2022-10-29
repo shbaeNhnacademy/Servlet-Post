@@ -21,32 +21,21 @@
 </head>
 <body>
 <%
-
-    Map<String, HttpSession> sessionMap;
-    Object objMap = application.getAttribute("sessionMap");
-    if (!Objects.isNull(objMap)) {
-        sessionMap = (Map<String, HttpSession>) objMap;
-    }
-    HttpSession session = request.getSession(false);
-    String s_id = "";
-    if (!Objects.isNull(session)) {
-        s_id = (String) session.getAttribute("id");
-        System.out.println(s_id);
-    }
+    pageContext.setAttribute("sMap",application.getAttribute("sessionMap"));
+    pageContext.setAttribute("id", (String) request.getSession(false).getAttribute("id"));
 %>
 Main
 <br /><a href="user/registerPost.jsp">register post</a> <br />
 <br />
 <br />
 <br />
-<c:if test="${sessionMap.containsKey('admin')}">
+<c:if test="${sMap.containsKey('admin')}">
     <br /><a href="/admin/admin.jsp">${admin_page}</a> <br />
 </c:if>
 
-<c:out value="${s_id}" default="11111" />
-${s_id}
+
 <c:choose>
-    <c:when test="${(session.getAttribute('id') == null)}">
+    <c:when test="${empty id}">
         <br /><a href="login.do">LOGIN</a> <br />
     </c:when>
     <c:otherwise>
