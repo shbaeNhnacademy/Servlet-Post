@@ -1,4 +1,6 @@
-<%@ page import="com.nhnacademy.domain.repository.PostRepository" %><%--
+<%@ page import="com.nhnacademy.domain.repository.PostRepository" %>
+<%@ page import="com.nhnacademy.domain.post.Post" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: suhan
   Date: 2022/10/27
@@ -20,6 +22,7 @@
 
 <%
     PostRepository postRepository = (PostRepository) application.getAttribute("postRepository");
+    pageContext.setAttribute("postList",postRepository.getPosts());
 %>
 
 <html>
@@ -29,12 +32,14 @@
 <body>
     <table border="1" >
          <th>${title}</th> <th>${writer}</th> <th>${time}</th> <th>${view}</th>
-        <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-        </tr>
+        <c:forEach var="post" items="${postList}">
+            <tr onclick="location.href='/users/${post.id}'">
+                <td>${post.title}</td>
+                <td>${post.writerUserId}</td>
+                <td>${post.writeTime}</td>
+                <td>${post.viewCount}</td>
+            </tr>
+        </c:forEach>
     </table>
 </body>
 </html>
