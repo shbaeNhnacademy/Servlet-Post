@@ -44,6 +44,7 @@
 <%--  <br><br><input type="submit" value="${m}">--%>
 </form>
 
+<br /> <br /> <a href='/'>HOME</a><br />
 
 </body>
 </html>

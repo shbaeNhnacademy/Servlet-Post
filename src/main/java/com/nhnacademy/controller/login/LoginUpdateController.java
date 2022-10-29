@@ -5,6 +5,7 @@ import com.nhnacademy.domain.repository.UserRepository;
 import com.nhnacademy.domain.user.User;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,7 +24,9 @@ public class LoginUpdateController implements Command {
         String pwd =  Optional.ofNullable(req.getParameter("pwd")).orElse("");
 
         User admin = (User) req.getServletContext().getAttribute("admin");
+        //
         Map<String, HttpSession> sessionMap = (Map<String, HttpSession>) req.getServletContext().getAttribute("sessionMap");
+
 
         if (admin.getId().equals(id) && admin.getPassword().equals(pwd)) {
             HttpSession session = req.getSession();
@@ -47,7 +50,8 @@ public class LoginUpdateController implements Command {
                 String value = entry.getValue();
                 if (key.equals(id) && value.equals(pwd)) {
                     HttpSession session = req.getSession();
-                    session.setAttribute(id, id);
+//                    session.setAttribute(id, id);
+                    session.setAttribute("id", id);
                     sessionMap.put(id, session);
                     return "redirect:/login.do";
                 }

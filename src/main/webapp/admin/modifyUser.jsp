@@ -41,8 +41,8 @@
     <br/>
     <input type="file" name="file" value="${select}" /><br /><br />
     <input type="submit" value="${register}" /><br />
-
-    <br /> <br /> <a href='/'>HOME</a><br />
 </form>
+
+<br /> <br /> <a href='/'>HOME</a><br />
 </body>
 </html>
