@@ -1,4 +1,4 @@
-package com.nhnacademy.controller.admin;
+package com.nhnacademy.controller.user;
 
 import com.nhnacademy.command.Command;
 import com.nhnacademy.domain.repository.UserRepository;
@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
 import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
 
 @Slf4j
 public class UserDeleteController implements Command {

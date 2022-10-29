@@ -14,6 +14,6 @@ public class GeneralUser implements User {
     private String password;
     @NonNull
     private String name;
-    private String profileFileName = ""; // TODO /profile?id=[profileFileName] 이렇게 쓰이나?
+    private String profileFileName = "";
 
 }

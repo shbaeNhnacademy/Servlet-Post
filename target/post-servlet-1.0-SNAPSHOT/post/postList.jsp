@@ -1,7 +1,6 @@
 <%@ page import="com.nhnacademy.domain.repository.PostRepository" %>
-<%@ page import="com.nhnacademy.domain.post.Post" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.time.format.DateTimeFormatter" %><%--
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.util.Objects" %><%--
   Created by IntelliJ IDEA.
   User: suhan
   Date: 2022/10/27
@@ -86,17 +85,21 @@
         <th class="tableHead" style="width: 20%">${time}</th>
         <th class="tableHead" style="width: 10%">${view}</th>
         <c:forEach var="post" items="${postList}">
-            <tr class="tableRow" onclick="location.href='/posts/${post.id}.do'">
-                <td>${post.id}</td>
-                <td>${post.title}</td>
-                <td>${post.writerUserId}</td>
-                <td>${DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(post.writeTime)}</td>
-                <td>${post.viewCount}</td>
+            <tr class="tableRow" >
+                <td onclick="location.href='/posts/${post.id}.do'">${post.id}</td>
+                <td onclick="location.href='/posts/${post.id}.do'">${post.title}</td>
+                <td onclick="location.href='/'">${post.writerUserId}</td>
+                <td onclick="location.href='/posts/${post.id}.do'">
+                        ${DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(post.writeTime)}
+                </td>
+                <td onclick="location.href='/posts/${post.id}.do'">
+                        ${post.viewCount}
+                </td>
             </tr>
         </c:forEach>
     </table>
 </main>
-
+<br /> <a href='/'>HOME</a><br />
 </body>
 <footer>
 

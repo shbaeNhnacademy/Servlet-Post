@@ -1,16 +1,13 @@
-package com.nhnacademy.controller.admin;
+package com.nhnacademy.controller.user;
 
 import com.nhnacademy.command.Command;
-import com.nhnacademy.domain.repository.UserRepository;
-import com.nhnacademy.domain.user.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Enumeration;
 
-public class UserModifyController implements Command {
+public class UserChangesCheckController implements Command {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
         // userList.jsp에서 넘어온 check 박스 관련한 데이터를 getParameter로 받아서
@@ -21,7 +18,7 @@ public class UserModifyController implements Command {
         if (list.size() > 2) {
             return "/admin/userList.jsp";
         }else{
-            String id = list.get(0);
+            String id = list.get(0); //name 설정을 한개만 해둠.
             req.setAttribute("id", id);
             return "/admin/modifyUser.jsp";
         }

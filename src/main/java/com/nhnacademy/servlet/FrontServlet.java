@@ -1,14 +1,16 @@
 package com.nhnacademy.servlet;
 
 import com.nhnacademy.command.Command;
-import com.nhnacademy.controller.admin.*;
+import com.nhnacademy.controller.user.*;
 import com.nhnacademy.controller.cookie.CookieProcessingController;
 import com.nhnacademy.controller.cookie.CookieUpdateController;
 import com.nhnacademy.controller.login.LoginProcessingController;
 import com.nhnacademy.controller.login.LoginUpdateController;
 import com.nhnacademy.controller.login.LogoutProcessingController;
+import com.nhnacademy.controller.post.PostDeleteController;
+import com.nhnacademy.controller.post.PostModifyController;
 import com.nhnacademy.controller.post.PostRegisterController;
-import com.nhnacademy.controller.post.PostViewController;
+import com.nhnacademy.controller.post.PostIdViewController;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.RequestDispatcher;
@@ -80,21 +82,28 @@ public class FrontServlet extends HttpServlet {
     private Command businessLogicCommand(String commandPath,String method) {
         Command command = null;
 
-        if ("/posts.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
-            command = new PostRegisterController();
-        } else if ("/users.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
+       if ("/users.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
             command = new UserAddController();
         } else if ("/users.do".equals(commandPath) && "GET".equalsIgnoreCase(method)) {
             command = new UserListController();
         }else if ("/users/modify.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
-            command = new UserModifyController();
+            command = new UserChangesCheckController();
         }else if ("/users/delete.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
             command = new UserDeleteController();
         }else if ("/users/change.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
-            command = new UserInfoChangeController();
-        } else if (commandPath.matches("^/posts/[0-9]*.do$") && "GET".equalsIgnoreCase(method)) {
-            command = new PostViewController();
-        }
-        return command;
+            command = new UserModifyController();
+        }else  if ("/posts.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
+           command = new PostRegisterController();
+       }else if (commandPath.matches("^/users/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.do$") && "GET".equalsIgnoreCase(method)) {
+           command = new PostIdViewController();
+       } else if (commandPath.matches("^/posts/[0-9]*.do$") && "GET".equalsIgnoreCase(method)) {
+           command = new PostIdViewController();
+       } else if ("/posts/modify.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
+           command = new PostModifyController();
+       }else if ("/posts/delete.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
+           command = new PostDeleteController();
+       }
+
+       return command;
     }
 }

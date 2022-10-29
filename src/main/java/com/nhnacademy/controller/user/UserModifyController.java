@@ -1,9 +1,8 @@
-package com.nhnacademy.controller.admin;
+package com.nhnacademy.controller.user;
 
 import com.nhnacademy.command.Command;
 import com.nhnacademy.command.CommandUtil;
 import com.nhnacademy.domain.repository.UserRepository;
-import com.nhnacademy.domain.user.GeneralUser;
 import com.nhnacademy.domain.user.User;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,7 +15,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 @Slf4j
-public class UserInfoChangeController implements Command {
+public class UserModifyController implements Command {
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {

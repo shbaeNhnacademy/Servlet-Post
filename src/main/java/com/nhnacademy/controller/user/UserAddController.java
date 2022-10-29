@@ -1,4 +1,4 @@
-package com.nhnacademy.controller.admin;
+package com.nhnacademy.controller.user;
 
 import com.nhnacademy.command.Command;
 import com.nhnacademy.command.CommandUtil;

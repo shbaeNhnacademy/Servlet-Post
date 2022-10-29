@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.Objects" %><%--
   Created by IntelliJ IDEA.
   User: suhan
   Date: 2022/10/27
@@ -13,7 +13,17 @@
 <fmt:setBundle basename="message" var="message"/>
 
 <fmt:message key="TITLE" bundle="${message}" var="title" />
+<fmt:message key="WRITER_ID" bundle="${message}" var="wr_id" />
+<fmt:message key="CONTENT" bundle="${message}" var="content" />
 <fmt:message key="SUBMIT" bundle="${message}" var="submit" />
+
+<%
+    HttpSession session = request.getSession(false);
+    if (!Objects.isNull(session)) {
+        pageContext.setAttribute("id", session.getAttribute("id"));
+    }
+
+%>
 
 <html>
 <head>
@@ -21,13 +31,20 @@
 </head>
 <body>
     <form method="post" action="/posts.do">
-        ${title} <input type="text" name="title"  />
+        <p> ${title} : <input type="text" name="title"  /></p>
+        <p>${wr_id} :  <input type="text" name="id" value="${id}" readonly /></p>
         <br />
-        <br />
-        <textarea name="content" rows="10" cols="80" placeholder="ex)123가나다라abc"></textarea>
+        <p>
+            <p>${content} : </p>
+            <textarea name="content" rows="10" cols="80" placeholder="ex)123가나다라abc"></textarea>
+        </p>
         <br />
         <br />
         <input type="submit" value="${submit}"/>
     </form>
+
+<br>
+<br>
+<br /> <a href='/'>HOME</a><br />
 </body>
 </html>
