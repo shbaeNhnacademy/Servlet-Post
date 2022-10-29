@@ -93,7 +93,9 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
     private void registerUsers(UserRepository userRepository, PostRepository postRepository) {
 
         List<User> userList = new ArrayList<>();
-        userList.add(new GeneralUser("merge", "1234", "sh"));
+        GeneralUser generalUser = new GeneralUser("merge", "1234", "sh");
+        generalUser.setProfileFileName("tutle.png");
+        userList.add(generalUser);
         userList.add(new GeneralUser("find", "1234", "abc"));
         userList.add(new GeneralUser("nhn", "1234", "nhn"));
 

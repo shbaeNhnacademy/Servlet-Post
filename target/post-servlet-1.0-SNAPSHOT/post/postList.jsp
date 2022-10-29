@@ -88,7 +88,7 @@
             <tr class="tableRow" >
                 <td onclick="location.href='/posts/${post.id}.do'">${post.id}</td>
                 <td onclick="location.href='/posts/${post.id}.do'">${post.title}</td>
-                <td onclick="location.href='/'">${post.writerUserId}</td>
+                <td onclick="location.href='/users/${post.writerUserId}.do'">${post.writerUserId}</td>
                 <td onclick="location.href='/posts/${post.id}.do'">
                         ${DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(post.writeTime)}
                 </td>

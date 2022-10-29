@@ -95,7 +95,7 @@ public class FrontServlet extends HttpServlet {
         }else  if ("/posts.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
            command = new PostRegisterController();
        }else if (commandPath.matches("^/users/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.do$") && "GET".equalsIgnoreCase(method)) {
-           command = new PostIdViewController();
+           command = new UserProfileViewController();
        } else if (commandPath.matches("^/posts/[0-9]*.do$") && "GET".equalsIgnoreCase(method)) {
            command = new PostIdViewController();
        } else if ("/posts/modify.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {

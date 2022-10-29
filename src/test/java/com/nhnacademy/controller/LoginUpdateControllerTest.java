@@ -24,8 +24,6 @@ class LoginUpdateControllerTest {
         HttpSession session = request.getSession();
         when(request.getSession(true)).thenReturn(session);
 
-        String s = "/users/nghn1";
-        System.out.println(s.matches("^/users/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.do$"));
 
 //
 //        LoginUpdateController controller = new LoginUpdateController();

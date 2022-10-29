@@ -9,7 +9,9 @@ import java.util.Optional;
 public class CommandUtil {
 
     public static final String CONTENT_DISPOSITION = "Content-Disposition";
-    public static final String UPLOAD_DIR = "/Users/suhan/Downloads/test";
+//    public static final String UPLOAD_DIR = "/Users/suhan/Downloads/test";
+//    public static final String UPLOAD_DIR = "/tmp/img";
+    public static final String UPLOAD_DIR = "/Users/sh/Downloads/test";
     public static String extractFileName(String contentDisposition) {
         for (String token : contentDisposition.split(";")) {
             if (token.trim().startsWith("filename")) {
@@ -29,4 +31,5 @@ public class CommandUtil {
                         .findFirst())
                 .orElse(null);
     }
+
 }
