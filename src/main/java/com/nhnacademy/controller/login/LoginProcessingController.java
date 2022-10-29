@@ -19,7 +19,7 @@ public class LoginProcessingController implements Command {
                 // admin으로 로그인 했을 시
                 return "/admin/admin.jsp";
             }
-            return "/login/loginComplete.jsp";
+            return "/";
         }
     }
 }

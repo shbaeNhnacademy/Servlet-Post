@@ -25,7 +25,7 @@
 <hr>
 
 <form method="post" action="/users.do" enctype="multipart/form-data">
-    ID <input type="text"  name="id" placeholder="ID" />
+    ID <input type="text"  name="id" placeholder="ID"  maxlength="15" />
     <br/>
     <br/>
     PWD <input type="password"  name="pwd" placeholder="Password" />

@@ -7,7 +7,8 @@ import com.nhnacademy.controller.cookie.CookieUpdateController;
 import com.nhnacademy.controller.login.LoginProcessingController;
 import com.nhnacademy.controller.login.LoginUpdateController;
 import com.nhnacademy.controller.login.LogoutProcessingController;
-import com.nhnacademy.controller.user.PostRegisterController;
+import com.nhnacademy.controller.post.PostRegisterController;
+import com.nhnacademy.controller.post.PostViewController;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.RequestDispatcher;
@@ -78,6 +79,7 @@ public class FrontServlet extends HttpServlet {
 
     private Command businessLogicCommand(String commandPath,String method) {
         Command command = null;
+
         if ("/posts.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
             command = new PostRegisterController();
         } else if ("/users.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
@@ -90,6 +92,8 @@ public class FrontServlet extends HttpServlet {
             command = new UserDeleteController();
         }else if ("/users/change.do".equals(commandPath) && "POST".equalsIgnoreCase(method)) {
             command = new UserInfoChangeController();
+        } else if (commandPath.matches("^/posts/[0-9]*.do$") && "GET".equalsIgnoreCase(method)) {
+            command = new PostViewController();
         }
         return command;
     }

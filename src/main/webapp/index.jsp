@@ -1,5 +1,6 @@
 <%@ page import="java.util.Map" %>
-<%@ page import="java.util.Objects" %><%--
+<%@ page import="java.util.Objects" %>
+<%@ page import="java.util.Optional" %><%--
   Created by IntelliJ IDEA.
   User: suhan
   Date: 2022/10/27
@@ -22,11 +23,16 @@
 <body>
 <%
     pageContext.setAttribute("sMap",application.getAttribute("sessionMap"));
-    pageContext.setAttribute("id", (String) request.getSession(false).getAttribute("id"));
+
+    HttpSession session = request.getSession(false);
+    if (!Objects.isNull(session)) {
+        pageContext.setAttribute("id", session.getAttribute("id"));
+    }
 %>
 Main
-<br /><a href="user/registerPost.jsp">register post</a> <br />
+<br /><a href="post/registerPost.jsp">Register Post</a> <br />
 <br />
+<br /><a href="post/postList.jsp">Post List</a> <br />
 <br />
 <br />
 <c:if test="${sMap.containsKey('admin')}">

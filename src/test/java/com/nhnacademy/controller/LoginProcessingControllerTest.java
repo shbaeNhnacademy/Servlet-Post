@@ -24,6 +24,7 @@ class LoginProcessingControllerTest {
         when(request.getParameter("id")).thenReturn("merge");
         when(request.getParameter("pwd")).thenReturn("1234");
 
+
 //        StringWriter stringWriter = new StringWriter();
 //        PrintWriter writer = new PrintWriter(stringWriter);
 //        when(response.getWriter()).thenReturn(writer);

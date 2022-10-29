@@ -9,12 +9,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class MemoryPostRepository implements PostRepository{
     private Map<Long, Post> postMap = new ConcurrentHashMap<>();
+    private long idCnt = 0;
 
     @Override
     public long register(Post post) {
-        long id = post.getId();
-        postMap.put(id, post);
-        return id;
+        ++idCnt;
+        postMap.put(idCnt, post);
+        return idCnt;
     }
 
     @Override

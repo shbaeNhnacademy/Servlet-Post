@@ -1,5 +1,7 @@
 package com.nhnacademy.listener;
 
+import com.nhnacademy.domain.post.ConcretePost;
+import com.nhnacademy.domain.post.Post;
 import com.nhnacademy.domain.repository.MemoryPostRepository;
 import com.nhnacademy.domain.repository.MemoryUserRepository;
 import com.nhnacademy.domain.repository.PostRepository;
@@ -37,7 +39,7 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
         PostRepository postRepository = new MemoryPostRepository();
 
         // TODO 테스트 사용자 등록
-        registerUsers(userRepository);
+        registerUsers(userRepository,postRepository);
 
         servletContext.setAttribute("userRepository", userRepository);
         servletContext.setAttribute("postRepository", postRepository);
@@ -88,7 +90,8 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
 
     }
 
-    private void registerUsers(UserRepository userRepository) {
+    private void registerUsers(UserRepository userRepository, PostRepository postRepository) {
+
         List<User> userList = new ArrayList<>();
         userList.add(new GeneralUser("merge", "1234", "sh"));
         userList.add(new GeneralUser("find", "1234", "abc"));
@@ -97,6 +100,19 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
         for (User user : userList) {
             userRepository.add(user);
         }
+
+        ConcretePost post1 = new ConcretePost();
+        post1.setTitle("eqiuopgbwiodnfiopdab uofdbn iobs odbqou wsbuod gbquiopsbduiosvqyidfvb qosuvdb yisqvb uiv");
+        post1.setContent("eqiuopgbwiodn124fiop quiopsbduiosvqyidfvb qosuv");
+        post1.setWriterUserId(userList.get(0).getId());
+        post1.setId(postRepository.register(post1));
+
+
+        ConcretePost post2 = new ConcretePost();
+        post2.setTitle("eqiuopgb wdqs  svqyidfvb qosuvdb yisqvb uiv ;lllllasxfmnoiadsbn fuoiqb uosuidbuwbd uiybuis bauo bsduivb asuyivb duyisvb duioasbnd uiowqev puod");
+        post2.setContent("eqiuo quiopsbduiosvqyidfvb qosuv");
+        post2.setWriterUserId(userList.get(1).getId());
+        post2.setId(postRepository.register(post2));
 
     }
 

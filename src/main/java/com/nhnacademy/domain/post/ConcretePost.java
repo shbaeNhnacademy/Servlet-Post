@@ -3,18 +3,18 @@ package com.nhnacademy.domain.post;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
 public class ConcretePost implements Post{
-    private long id = 0;
+    private long id;
     private String title;
     private String content;
     private String writerUserId;
     private LocalDateTime writeTime;
 
     public ConcretePost() {
-        this.id++;
         writeTime = LocalDateTime.now();
     }
 
