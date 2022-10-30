@@ -2,7 +2,6 @@ package com.nhnacademy.controller.cookie;
 
 import com.nhnacademy.command.Command;
 import com.nhnacademy.command.CommandUtil;
-import com.nhnacademy.listener.WebAppListener;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

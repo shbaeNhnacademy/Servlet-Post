@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @WebFilter(filterName = "counterFilter", urlPatterns = "/*",initParams = {
-        @WebInitParam(name = "include-urls",value = "/posts/*\n" +
-                "/users/*\n")
+        @WebInitParam(name = "include-urls",value = "/posts/\n" +
+                "/users/\n")
 })
 public class CounterFilter implements Filter {
     private Set<String> includedUrls = new HashSet<>();
@@ -34,18 +34,22 @@ public class CounterFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-
-        if (includedUrls.contains(request.getRequestURI())) {
+        boolean isIncludeUrl = false;
+        for (String includedUrl : includedUrls) {
+            if (request.getRequestURI().contains(includedUrl)) {
+                isIncludeUrl = true;
+                break;
+            }
+        }
+        if (isIncludeUrl) {
             // 필터링 필요
             ServletContext servletContext = request.getServletContext();
-            int viewCount = (int) Optional.ofNullable(servletContext.getAttribute("viewCount")).orElse(0);
+            int visitCount = (int) Optional.ofNullable(servletContext.getAttribute("visitCount")).orElse(0);
 
-            servletContext.setAttribute("viewCount", ++viewCount);
+            servletContext.setAttribute("visitCount", ++visitCount);
+            log.info("{}",visitCount);
 
             filterChain.doFilter(request, response);
-
-            log.info("{}",viewCount);
-
         }else{
             // 그대로 패스
             filterChain.doFilter(request, response);

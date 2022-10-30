@@ -12,6 +12,13 @@ public class LogoutProcessingController implements Command {
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
         HttpSession session = req.getSession(false);
         if (!Objects.isNull(session)) {
+            Object admin = session.getAttribute("admin");
+            Object id = session.getAttribute("id");
+            if (Objects.nonNull(admin)) {
+                session.setAttribute("admin", "");
+            }else if(Objects.nonNull(id)){
+                session.setAttribute("id", "");
+            }
             session.invalidate();
         }
         return "redirect:/login.do";

@@ -28,10 +28,9 @@ public class UserAddController implements Command {
         String pwd = req.getParameter("pwd");
         String name = req.getParameter("name");
 
-        //TODO 권한 부여해서 .sh 파일로 전달?
-//        String UPLOAD_DIR = "/WEB-INF/classes/img";
 
         try {
+            GeneralUser user = new GeneralUser(id, pwd, name);
             for (Part part : req.getParts()) {
                 String contentDisposition = part.getHeader(CommandUtil.CONTENT_DISPOSITION);
 
@@ -42,13 +41,12 @@ public class UserAddController implements Command {
                         String filePath = CommandUtil.UPLOAD_DIR + File.separator + fileName;
                         part.write(filePath); //임시 저장된 파일을 내가 원하는 곳에 쓰고
                         part.delete(); //임시파일은 지워버림
-
-                        GeneralUser user = new GeneralUser(id, pwd, name);
                         user.setProfileFileName(fileName);
-                        userRepository.add(user);
+
                     }
                 }
             }
+            userRepository.add(user);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ServletException e) {
@@ -56,7 +54,7 @@ public class UserAddController implements Command {
         }
 
 
-        return "/admin/addUser.jsp";
+        return "/admin/userList.jsp";
     }
 
 

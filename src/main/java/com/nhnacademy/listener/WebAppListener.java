@@ -1,7 +1,6 @@
 package com.nhnacademy.listener;
 
 import com.nhnacademy.domain.post.ConcretePost;
-import com.nhnacademy.domain.post.Post;
 import com.nhnacademy.domain.repository.MemoryPostRepository;
 import com.nhnacademy.domain.repository.MemoryUserRepository;
 import com.nhnacademy.domain.repository.PostRepository;
@@ -14,12 +13,18 @@ import lombok.extern.slf4j.Slf4j;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.annotation.WebListener;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.*;
+import java.io.OutputStream;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
@@ -38,8 +43,8 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
         UserRepository userRepository = new MemoryUserRepository();
         PostRepository postRepository = new MemoryPostRepository();
 
-        // TODO 테스트 사용자 등록
-        registerUsers(userRepository,postRepository);
+        //TODO 테스트 사용자 등록
+        registerUsersAndPosts(userRepository,postRepository);
 
         servletContext.setAttribute("userRepository", userRepository);
         servletContext.setAttribute("postRepository", postRepository);
@@ -51,7 +56,7 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
         int visitCount = 0;
 
         try (DataInputStream dataInputStream = new DataInputStream(servletContext.getResourceAsStream(filePath))) {
-            visitCount = Optional.ofNullable(dataInputStream.readInt()).orElse(0);
+            visitCount = Optional.of(dataInputStream.readInt()).orElse(0);
         } catch (IOException e) {
             log.error("", e);
         }
@@ -73,24 +78,21 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
         String visitCountFileName = servletContext.getInitParameter("visitCountFileName");
         String filePath = "/WEB-INF/classes/" + visitCountFileName;
 
-        int viewCount = (int) servletContext.getAttribute("viewCount");
+        int visitCount = (int) servletContext.getAttribute("visitCount");
 
-        //TODO 주석빼고 방문횟수 저장해야함
-//        try(OutputStream os = Files.newOutputStream(Paths.get(servletContext.getResource(filePath).toURI()));
-//            DataOutputStream dos = new DataOutputStream(os);)
-//        {
-//            dos.writeInt(viewCount);
-//        } catch (IOException e) {
-//            log.error("",e);
-//        } catch (URISyntaxException e) {
-//            log.error("",e);
-//        }
-
-        log.error("Listener End count : {}", viewCount);
+        try(OutputStream os = Files.newOutputStream(Paths.get(servletContext.getResource(filePath).toURI()));
+            DataOutputStream dos = new DataOutputStream(os);)
+        {
+            dos.writeInt(visitCount);
+        } catch (IOException e) {
+            log.error("",e);
+        } catch (URISyntaxException e) {
+            log.error("",e);
+        }
 
     }
 
-    private void registerUsers(UserRepository userRepository, PostRepository postRepository) {
+    private void registerUsersAndPosts(UserRepository userRepository, PostRepository postRepository) {
 
         List<User> userList = new ArrayList<>();
         GeneralUser generalUser = new GeneralUser("merge", "1234", "sh");

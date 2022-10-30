@@ -15,17 +15,23 @@
 <fmt:message key="REGISTER" bundle="${message}" var="register" />
 <fmt:message key="SELECT" bundle="${message}" var="select" />
 <fmt:message key="NAME" bundle="${message}" var="name" />
+<fmt:message key="USER_LIST" bundle="${message}" var="u_list" />
+
+<%
+    String id = (String) request.getAttribute("id");
+%>
+
 <html>
 <head>
-    <title>Add User</title>
+    <title>Modify User</title>
 </head>
 <body>
 
-<h2>Add User for Administrator</h2>
+<h2>Modify User for Administrator</h2>
 <hr>
 
-<form method="post" action="/users.do" enctype="multipart/form-data">
-    ID <input type="text"  name="id" placeholder="ID"  maxlength="15" />
+<form method="post" action="/users/change.do" enctype="multipart/form-data">
+    ID <input type="text"  name="id"  value="${id}" readonly style="color: red" />
     <br/>
     <br/>
     PWD <input type="password"  name="pwd" placeholder="Password" />
@@ -36,8 +42,8 @@
     <br/>
     <input type="file" name="file" value="${select}" /><br /><br />
     <input type="submit" value="${register}" /><br />
-
-    <br /> <br /> <a href='/'>HOME</a><br />
 </form>
+
+<br /> <br /> <a href='/admin/userList.jsp'>${u_list}</a><br />
 </body>
 </html>

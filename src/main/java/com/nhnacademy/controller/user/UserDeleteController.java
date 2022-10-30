@@ -1,6 +1,7 @@
 package com.nhnacademy.controller.user;
 
 import com.nhnacademy.command.Command;
+import com.nhnacademy.command.CommandUtil;
 import com.nhnacademy.domain.repository.UserRepository;
 import com.nhnacademy.domain.user.User;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +9,12 @@ import lombok.extern.slf4j.Slf4j;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
 import java.util.Enumeration;
 import java.util.Map;
 
@@ -30,7 +37,19 @@ public class UserDeleteController implements Command {
             User remove = userRepository.remove(id);
 
             //파일 정리
-            //TODO 삭제된 이용자의 이미지파일 삭제
+
+            File file = new File(CommandUtil.UPLOAD_DIR+File.separator+remove.getProfileFileName());
+
+            if( file.exists() ){
+                try {
+                    cleanUp(file.toPath());
+                    log.error("파일삭제 성공");
+                } catch (IOException e) {
+                    log.error("파일삭제 실패");
+                }
+            }else{
+                log.info("파일이 존재하지 않습니다.");
+            }
 
             //세션 종료
             if (sessionMap.containsKey(id)) {
@@ -43,5 +62,9 @@ public class UserDeleteController implements Command {
         }
 
         return "/admin/userList.jsp";
+    }
+
+    public void cleanUp(Path path) throws NoSuchFileException, DirectoryNotEmptyException, IOException {
+        Files.delete(path);
     }
 }

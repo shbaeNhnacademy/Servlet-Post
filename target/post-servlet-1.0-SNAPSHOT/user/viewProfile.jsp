@@ -15,6 +15,7 @@
 <fmt:setBundle basename="message" var="message"/>
 
 <fmt:message key="NAME" bundle="${message}" var="name" />
+<fmt:message key="POST_LIST" bundle="${message}" var="post_list" />
 
 <%
   pageContext.setAttribute("user", (User) request.getAttribute("user"));
@@ -27,8 +28,9 @@
     <title>View User Profile</title>
 </head>
 <body>
-  <p> ${name} <input type="text"  name="name" value="${user.name}" placeholder="Name" readonly /></p>
-  <p><img src="${CommandUtil.UPLOAD_DIR+=File.separator+=user.profileFileName}"></p>
+  <p> ${name} :  <input type="text"  name="name" value="${user.name}" placeholder="Name" readonly /></p>
+  <p><img src="${CommandUtil.UPLOAD_DIR+=File.separator+=user.profileFileName}"  alt="profile"></p>
 
+  <br /><br /> <a href='/post/postList.jsp'>${post_list}</a><br />
 </body>
 </html>

@@ -21,6 +21,8 @@
 <fmt:message key="VIEW" bundle="${message}" var="view" />
 <fmt:message key="MODIFY" bundle="${message}" var="modify" />
 <fmt:message key="DELETE" bundle="${message}" var="delete" />
+<fmt:message key="POST_LIST" bundle="${message}" var="post_list" />
+
 
 <%
     Post post = (Post) request.getAttribute("post");
@@ -80,7 +82,7 @@
     </c:otherwise>
 </c:choose>
 
-<br /> <a href='/'>HOME</a><br />
+<br /> <a href='/post/postList.jsp'>${post_list}</a><br />
 
 </body>
 </html>

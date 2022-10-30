@@ -1,6 +1,7 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.Objects" %>
-<%@ page import="java.util.Optional" %><%--
+<%@ page import="java.util.Optional" %>
+<%@ page import="com.nhnacademy.domain.user.LoginUser" %><%--
   Created by IntelliJ IDEA.
   User: suhan
   Date: 2022/10/27
@@ -15,6 +16,8 @@
 <fmt:setBundle basename="message" var="message"/>
 
 <fmt:message key="ADMIN_LINK" bundle="${message}" var="admin_page" />
+<fmt:message key="CURRENT_USERS" bundle="${message}" var="cur_users" />
+<fmt:message key="VISITORS" bundle="${message}" var="visitors" />
 
 <html>
 <head>
@@ -23,36 +26,70 @@
 <body>
 <%
     pageContext.setAttribute("sMap",application.getAttribute("sessionMap"));
+    pageContext.setAttribute("id", "");
+    pageContext.setAttribute("admin", "");
 
     HttpSession session = request.getSession(false);
     if (!Objects.isNull(session)) {
-        pageContext.setAttribute("id", session.getAttribute("id"));
+        Object id = session.getAttribute("id");
+        pageContext.setAttribute("id", id);
+        if (Objects.isNull(id)) {
+            Object admin = session.getAttribute("admin");
+            pageContext.setAttribute("admin", admin);
+        }
     }
+    pageContext.setAttribute("current_users", LoginUser.getSessionCount());
 %>
-Main
+<p>
+<h1>
+    Main
+</h1>
+
+<span>
+    <c:choose>
+        <c:when test="${(empty id) && (empty admin)}">
+            <br /><a href="login.do">LOGIN</a> <br />
+        </c:when>
+        <c:when test="${not empty admin}">
+            <span>admin : </span><span style="font-weight: bold; color: red">${admin}&nbsp;&nbsp;</span>
+            <br /><a href="logout.do">LOGOUT</a> <br />
+        </c:when>
+        <c:otherwise>
+            <span>user : </span><span style="font-weight: bold; color: blue">${id}&nbsp;&nbsp;</span>
+            <br /><a href="logout.do">LOGOUT</a> <br />
+        </c:otherwise>
+    </c:choose>
+</span>
+</p>
+
+
+<hr>
 <br /><a href="post/registerPost.jsp">Register Post</a> <br />
 <br />
 <br /><a href="post/postList.jsp">Post List</a> <br />
 <br />
 <br />
+<hr>
 <c:if test="${sMap.containsKey('admin')}">
-    <br /><a href="/admin/admin.jsp">${admin_page}</a> <br />
+    <br /><a href="/admin/admin.jsp">${admin_page}</a> <br /><hr>
 </c:if>
 
 
-<c:choose>
-    <c:when test="${empty id}">
-        <br /><a href="login.do">LOGIN</a> <br />
-    </c:when>
-    <c:otherwise>
-        <br /><a href="logout.do">LOGOUT</a> <br />
-    </c:otherwise>
-</c:choose>
-
 
 
 <br />
 <br />
+<br />
+<br />
+<p>
+    <span>
+        ${visitors} : ${applicationScope.visitCount}
+    </span>
+    &nbsp;/&nbsp;
+    <span>
+        ${cur_users} : ${current_users}
+    </span>
+</p>
 <br />
 <a href="/set-cookie.do?locale=ko">한국어</a>
 <a href="/set-cookie.do?locale=en">English</a>

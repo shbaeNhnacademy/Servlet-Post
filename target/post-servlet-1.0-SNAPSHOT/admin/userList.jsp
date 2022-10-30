@@ -18,15 +18,12 @@
 <fmt:message key="USER_ADD" bundle="${message}" var="u_add" />
 <fmt:message key="MODIFY" bundle="${message}" var="modify" />
 <fmt:message key="DELETE" bundle="${message}" var="delete" />
+<fmt:message key="ADMIN" bundle="${message}" var="admin" />
 
 <%
   UserRepository userRepository = (UserRepository) application.getAttribute("userRepository");
   List<User> users = userRepository.getUsers();
-  for (User user : users) {
-    user.getName();
-    user.getProfileFileName();
-    user.getId();
-  }
+  pageContext.setAttribute("users", (List<User>) users);
 %>
 
 <html>
@@ -35,8 +32,8 @@
 </head>
 <body>
 <form method="post" >
-  <c:forEach var="user" items="${userRepository.getUsers()}">
-    <input type="checkbox" name="${user.getId()}" > <span> ${user.getName()}  /  ${user.getProfileFileName()}  </span> <br>
+  <c:forEach var="user" items="${users}">
+    <input type="checkbox" name="${user.id}" > <span> ${user.name}  /  ${user.profileFileName}  </span> <br>
   </c:forEach>
   <br><br>
   <input type="submit" value="${modify}" onclick="javascript: form.action='/users/modify.do';"/>
@@ -44,7 +41,7 @@
 <%--  <br><br><input type="submit" value="${m}">--%>
 </form>
 
-<br /> <br /> <a href='/'>HOME</a><br />
+<br /> <br /> <a href='/admin/admin.jsp'>${admin}</a><br />
 
 </body>
 </html>

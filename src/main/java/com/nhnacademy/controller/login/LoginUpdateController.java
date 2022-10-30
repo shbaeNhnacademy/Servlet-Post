@@ -42,7 +42,6 @@ public class LoginUpdateController implements Command {
                 .collect(Collectors.toMap(User::getId, User::getPassword));
 
 
-        // TODO iterator 로 containsKey가 동작해서 느릴수도
         if (collect.containsKey(id) && collect.containsValue(pwd)) {
             // id는 존재함
             for (Map.Entry<String, String> entry : collect.entrySet()) {

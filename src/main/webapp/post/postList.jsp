@@ -99,7 +99,7 @@
         </c:forEach>
     </table>
 </main>
-<br /> <a href='/'>HOME</a><br />
+<a href='/'>HOME</a><br />
 </body>
 <footer>
 

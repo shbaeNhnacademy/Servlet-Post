@@ -16,6 +16,8 @@
 <fmt:message key="WRITER_ID" bundle="${message}" var="wr_id" />
 <fmt:message key="CONTENT" bundle="${message}" var="content" />
 <fmt:message key="SUBMIT" bundle="${message}" var="submit" />
+<fmt:message key="POST_LIST" bundle="${message}" var="post_list" />
+
 
 <%
     HttpSession session = request.getSession(false);
@@ -45,6 +47,6 @@
 
 <br>
 <br>
-<br /> <a href='/'>HOME</a><br />
+<br /> <a href='/post/postList.jsp'>${post_list}</a><br />
 </body>
 </html>

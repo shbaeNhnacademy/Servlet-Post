@@ -15,34 +15,31 @@
 <fmt:message key="REGISTER" bundle="${message}" var="register" />
 <fmt:message key="SELECT" bundle="${message}" var="select" />
 <fmt:message key="NAME" bundle="${message}" var="name" />
-
-<%
-    String id = (String) request.getAttribute("id");
-%>
+<fmt:message key="ADMIN" bundle="${message}" var="admin" />
 
 <html>
 <head>
-    <title>Modify User</title>
+    <title>Add User</title>
 </head>
 <body>
 
-<h2>Modify User for Administrator</h2>
+<h2>Add User for Administrator</h2>
 <hr>
 
-<form method="post" action="/users/change.do" enctype="multipart/form-data">
-    ID <input type="text"  name="id"  value="${id}" readonly style="color: red" />
+<form method="post" action="/users.do" enctype="multipart/form-data">
+    ID <input type="text"  name="id" placeholder="ID"  maxlength="15" required />
     <br/>
     <br/>
-    PWD <input type="password"  name="pwd" placeholder="Password" />
+    PWD <input type="password"  name="pwd" placeholder="Password" required />
     <br/>
     <br/>
-    ${name} <input type="text"  name="name" placeholder="Name" />
+    ${name} <input type="text"  name="name" placeholder="Name" required />
     <br/>
     <br/>
     <input type="file" name="file" value="${select}" /><br /><br />
     <input type="submit" value="${register}" /><br />
-</form>
 
-<br /> <br /> <a href='/'>HOME</a><br />
+    <br /> <br /> <a href='/admin/admin.jsp'>${admin}</a><br />
+</form>
 </body>
 </html>
