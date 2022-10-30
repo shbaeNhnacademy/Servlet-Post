@@ -80,7 +80,7 @@
 </header>
 <main>
     <table class="table">
-        <th class="tableHead" style="width: 10%">${title}</th>
+        <th class="tableHead" style="width: 10%">No.</th>
         <th class="tableHead" style="width: 45%">${title}</th>
         <th class="tableHead" style="width: 15%">${writer}</th>
         <th class="tableHead" style="width: 20%">${time}</th>

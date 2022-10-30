@@ -13,13 +13,10 @@ public class ConcretePost implements Post{
     private String content;
     private String writerUserId;
     private LocalDateTime writeTime;
-
+    private int viewCount;
     public ConcretePost() {
         writeTime = LocalDateTime.now();
     }
-
-    private int viewCount;
-
 
     @Override
     public void increaseViewCount() {

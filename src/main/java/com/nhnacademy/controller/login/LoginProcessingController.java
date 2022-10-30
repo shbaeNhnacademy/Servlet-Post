@@ -14,7 +14,6 @@ public class LoginProcessingController implements Command {
         if (Objects.isNull(session)) {
             return "/login/loginForm.jsp";
         } else {
-            session.getAttributeNames().asIterator().forEachRemaining(s -> System.out.println("s = " + s + "   " + session.getAttribute(s) ));
             if (!Objects.isNull(session.getAttribute("admin"))) {
                 return "/admin/admin.jsp";
             }

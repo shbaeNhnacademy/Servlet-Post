@@ -37,6 +37,8 @@ public class PostModifyController implements Command {
                 post.setWriteTime(LocalDateTime.now());
             }
 
+            postRepository.modify(post);
+
             return "/post/postList.jsp";
         }
         return "redirect:/post/postList.jsp";
