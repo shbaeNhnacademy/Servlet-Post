@@ -34,14 +34,11 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext servletContext = sce.getServletContext();
-        //언어 default 영어로 지정
         servletContext.setAttribute("locale", "en");
 
-        // 관리자 생성 후 servletContext.속성에 set
         Admin admin = new Admin("admin","12345","관리자");
         servletContext.setAttribute("admin", admin);
 
-        // repository(user/post) 두개 만들어서 servletContext.속성에 set
         UserRepository userRepository = new MemoryUserRepository();
         PostRepository postRepository = new MemoryPostRepository();
 
@@ -51,7 +48,6 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
         servletContext.setAttribute("userRepository", userRepository);
         servletContext.setAttribute("postRepository", postRepository);
 
-        //visitCount 불러오기
         String visitCountFileName = servletContext.getInitParameter("visitCountFileName");
         String filePath = "/WEB-INF/classes/" + visitCountFileName;
 
@@ -64,19 +60,17 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
         }
         servletContext.setAttribute("visitCount", visitCount);
 
-        //sessionMap 생성 및 context 속성에 set
         Map<String, HttpSession> sessionMap = new ConcurrentHashMap<>();
         servletContext.setAttribute("sessionMap", sessionMap);
 
 
-        log.error("Listener Start count : {}", visitCount);
+        log.info("Listener Start count : {}", visitCount);
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         ServletContext servletContext = sce.getServletContext();
 
-        //visitCount 저장
         String visitCountFileName = servletContext.getInitParameter("visitCountFileName");
         String filePath = "/WEB-INF/classes/" + visitCountFileName;
 

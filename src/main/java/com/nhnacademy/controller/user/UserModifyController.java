@@ -25,25 +25,20 @@ public class UserModifyController implements Command {
 
         User user = userRepository.getUser(id);
         if (!Objects.isNull(user) && user.getId().equals(id)) {
-            // 변경한건지 확인 필요
             String pwd = req.getParameter("pwd");
             String name = req.getParameter("name");
             if (!user.getPassword().equals(pwd) && !pwd.equals("")) {
-                //pwd가 공백이 아니고 이전 비밀번호와 값이 같지 않다면 변경
                 user.setPassword(pwd);
             }
             if (!user.getName().equals(name) && !name.equals("")) {
-                //name이 공백이 아니고 이전 이름과 값이 같지 않다면 변경
                 user.setName(name);
             }
             String file = verifyChangingFile(req, user);
             if (!file.equals("")) {
                 user.setProfileFileName(file);
             }
-            log.warn("{}",userRepository.getUsers());
             return "/admin/userList.jsp";
         }else {
-            //null으로 아예 안들어 왔거나, 맞는 아이디가 없거나 -> userList.jsp로 바로 넘겨버리기
             return "redirect:/admin/userList.jsp";
         }
 
@@ -58,8 +53,8 @@ public class UserModifyController implements Command {
                     String fileName = CommandUtil.extractFileName(contentDisposition);
                     if (!user.getProfileFileName().equals(fileName) && part.getSize() > 0) {
                         String filePath = CommandUtil.UPLOAD_DIR + File.separator + fileName;
-                        part.write(filePath); //임시 저장된 파일을 내가 원하는 곳에 쓰고
-                        part.delete(); //임시파일은 지워버림
+                        part.write(filePath);
+                        part.delete();
                         return fileName;
                     }
                 }

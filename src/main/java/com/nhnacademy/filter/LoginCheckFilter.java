@@ -43,7 +43,6 @@ public class LoginCheckFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession(false);
-//        log.info("session : {}, path : {} , request : {} ",session,request.getServletPath(),request.getMethod());
         if (Objects.isNull(session)) {
             if (excludedUrls.contains(request.getRequestURI())) {
                 filterChain.doFilter(servletRequest, servletResponse);
@@ -53,7 +52,6 @@ public class LoginCheckFilter implements Filter {
             }
 
         }else{
-            //가던길 가세요?
             filterChain.doFilter(servletRequest, servletResponse);
         }
     }

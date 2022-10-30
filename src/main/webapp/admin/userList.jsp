@@ -38,7 +38,6 @@
   <br><br>
   <input type="submit" value="${modify}" onclick="javascript: form.action='/users/modify.do';"/>
   <input type="submit" value="${delete}" onclick="javascript: form.action='/users/delete.do';"/>
-<%--  <br><br><input type="submit" value="${m}">--%>
 </form>
 
 <br /> <br /> <a href='/admin/admin.jsp'>${admin}</a><br />

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 public class PostRegisterController implements Command {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
-        log.info("{}", req.getMethod());
 
         String title = req.getParameter("title");
         String content = req.getParameter("content");

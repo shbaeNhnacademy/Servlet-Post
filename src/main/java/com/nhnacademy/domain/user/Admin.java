@@ -12,6 +12,5 @@ public class Admin implements User{
     @NonNull
     private String name;
 
-    //안씀
     private String profileFileName;
 }

@@ -22,7 +22,6 @@ public class PostDeleteController implements Command {
                 && post.getId() == id
                 && post.getWriterUserId().equals(writer_id)){
             Post remove = postRepository.remove(id);
-            log.info("remove : {} / rest : {}", remove, postRepository.getPosts());
         }
         return "/post/postList.jsp";
     }

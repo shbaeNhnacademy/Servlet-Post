@@ -36,7 +36,6 @@ public class PostModifyController implements Command {
             if (isChanged) {
                 post.setWriteTime(LocalDateTime.now());
             }
-            log.info("change : {} / now : {}", post, postRepository.getPosts());
 
             return "/post/postList.jsp";
         }

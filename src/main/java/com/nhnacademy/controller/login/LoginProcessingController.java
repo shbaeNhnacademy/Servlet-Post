@@ -16,7 +16,6 @@ public class LoginProcessingController implements Command {
         } else {
             session.getAttributeNames().asIterator().forEachRemaining(s -> System.out.println("s = " + s + "   " + session.getAttribute(s) ));
             if (!Objects.isNull(session.getAttribute("admin"))) {
-                // admin으로 로그인 했을 시
                 return "/admin/admin.jsp";
             }
             return "/";

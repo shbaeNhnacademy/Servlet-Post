@@ -24,7 +24,6 @@ public class LoginUpdateController implements Command {
         String pwd =  Optional.ofNullable(req.getParameter("pwd")).orElse("");
 
         User admin = (User) req.getServletContext().getAttribute("admin");
-        //
         Map<String, HttpSession> sessionMap = (Map<String, HttpSession>) req.getServletContext().getAttribute("sessionMap");
 
 
@@ -43,13 +42,11 @@ public class LoginUpdateController implements Command {
 
 
         if (collect.containsKey(id) && collect.containsValue(pwd)) {
-            // id는 존재함
             for (Map.Entry<String, String> entry : collect.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue();
                 if (key.equals(id) && value.equals(pwd)) {
                     HttpSession session = req.getSession();
-//                    session.setAttribute(id, id);
                     session.setAttribute("id", id);
                     sessionMap.put(id, session);
                     return "redirect:/login.do";
@@ -58,7 +55,6 @@ public class LoginUpdateController implements Command {
 
         }
 
-        // 허용되지 않은 사용자
         return redirectLoginForm;
     }
 }

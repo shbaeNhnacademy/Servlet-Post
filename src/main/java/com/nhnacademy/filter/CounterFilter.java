@@ -42,16 +42,13 @@ public class CounterFilter implements Filter {
             }
         }
         if (isIncludeUrl) {
-            // 필터링 필요
             ServletContext servletContext = request.getServletContext();
             int visitCount = (int) Optional.ofNullable(servletContext.getAttribute("visitCount")).orElse(0);
 
             servletContext.setAttribute("visitCount", ++visitCount);
-            log.info("{}",visitCount);
 
             filterChain.doFilter(request, response);
         }else{
-            // 그대로 패스
             filterChain.doFilter(request, response);
         }
     }

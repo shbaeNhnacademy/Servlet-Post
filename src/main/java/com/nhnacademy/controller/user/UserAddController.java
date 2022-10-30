@@ -20,7 +20,6 @@ public class UserAddController implements Command {
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
-        //id,pwd,name,profile 로 들어온 데이터를 userRepository 받아서 setAtrrbute 하기
 
         UserRepository userRepository = (UserRepository) req.getServletContext().getAttribute("userRepository");
 
@@ -39,8 +38,8 @@ public class UserAddController implements Command {
 
                     if (part.getSize() > 0) {
                         String filePath = CommandUtil.UPLOAD_DIR + File.separator + fileName;
-                        part.write(filePath); //임시 저장된 파일을 내가 원하는 곳에 쓰고
-                        part.delete(); //임시파일은 지워버림
+                        part.write(filePath);
+                        part.delete();
                         user.setProfileFileName(fileName);
 
                     }

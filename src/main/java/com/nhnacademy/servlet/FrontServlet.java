@@ -43,8 +43,6 @@ public class FrontServlet extends HttpServlet {
             Command command = resolveServlet(req.getServletPath(), req.getMethod());
             String view = command.execute(req, resp);
 
-            log.info("Path : {} , ,method : [{}], VIEW : {}", req.getServletPath(), req.getMethod(), view);
-
             if (view.startsWith(REDIRECT_PREFIX)) {
                 resp.sendRedirect(view.substring(REDIRECT_PREFIX.length()));
             } else {

@@ -14,13 +14,11 @@ public class SessionListener implements HttpSessionListener {
     private int count = 0;
     @Override
     public void sessionCreated(HttpSessionEvent se) {
-        log.info("session={}",++count);
-        loginUser.setSessionCount(count);
+        loginUser.setSessionCount(++count);
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
-        log.info("session={}",--count);
-        loginUser.setSessionCount(count);
+        loginUser.setSessionCount(--count);
     }
 }
