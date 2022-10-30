@@ -1,10 +1,7 @@
 package com.nhnacademy.listener;
 
 import com.nhnacademy.domain.post.ConcretePost;
-import com.nhnacademy.domain.repository.MemoryPostRepository;
-import com.nhnacademy.domain.repository.MemoryUserRepository;
-import com.nhnacademy.domain.repository.PostRepository;
-import com.nhnacademy.domain.repository.UserRepository;
+import com.nhnacademy.domain.repository.*;
 import com.nhnacademy.domain.user.Admin;
 import com.nhnacademy.domain.user.GeneralUser;
 import com.nhnacademy.domain.user.User;
@@ -41,6 +38,8 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
 
         UserRepository userRepository = new MemoryUserRepository();
         PostRepository postRepository = new MemoryPostRepository();
+
+        JsonUserRepository jsonUserRepository = new JsonUserRepository();
 
         //TODO 테스트 사용자 등록
         registerUsersAndPosts(userRepository,postRepository);
