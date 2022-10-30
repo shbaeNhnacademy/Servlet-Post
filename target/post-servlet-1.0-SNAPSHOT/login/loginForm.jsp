@@ -12,6 +12,7 @@
 <fmt:setLocale value="<%=(String) application.getAttribute(\"locale\")%>" />
 <fmt:setBundle basename="message" var="message" />
 <fmt:message key="SUBMIT" bundle="${message}" var="submit" />
+<fmt:message key="HOME" bundle="${message}" var="home" />
 
 <html>
 <head>
@@ -28,6 +29,6 @@
   <input type="submit" value="${submit}" />
 </form>
 
-<br /><a href='/'>HOME</a><br />
+<br /><a href='/'>${home}</a><br />
 </body>
 </html>

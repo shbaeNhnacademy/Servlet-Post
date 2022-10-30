@@ -29,10 +29,6 @@ z
 Jsrc/main/java/com/nhnacademy/controller/cookie/CookieUpdateController.java,3/2/32f632485ac0d65c361840955a590c4653c607bf
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
-S
-#src/main/webapp/login/loginForm.jsp,d/5/d5a5e072cdc43d7bdac0501d156d8d84b5d8c293
-W
-'src/main/webapp/login/loginComplete.jsp,c/2/c29628e433fcab57549128c0603a06104991b1c9
 b
 2src/main/java/com/nhnacademy/domain/post/Post.java,e/0/e05e19269a14090b908675b50b9b0f406447b047
 r

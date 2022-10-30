@@ -14,6 +14,8 @@
 
 <fmt:message key="USER_LIST" bundle="${message}" var="u_list" />
 <fmt:message key="USER_ADD" bundle="${message}" var="u_add" />
+<fmt:message key="ADMIN_LINK" bundle="${message}" var="admin_link" />
+<fmt:message key="HOME" bundle="${message}" var="home" />
 
 
 <html>
@@ -21,10 +23,10 @@
     <title>Admin Page</title>
 </head>
 <body>
-<h1>Admin Page</h1> <br>
+<h1>${admin_link}</h1> <br>
 
 <a href="/users.do">${u_list}</a> <br> <br> <br>
 <a href="/admin/addUser.jsp">${u_add}</a> <br> <br> <br>
-<br /> <a href='/'>HOME</a><br />
+<br /> <a href='/'>${home}</a><br />
 </body>
 </html>

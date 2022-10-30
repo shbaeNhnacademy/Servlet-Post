@@ -18,7 +18,8 @@
 <fmt:message key="WRITER_ID" bundle="${message}" var="writer" />
 <fmt:message key="WRITE_TIME" bundle="${message}" var="time" />
 <fmt:message key="VIEW" bundle="${message}" var="view" />
-
+<fmt:message key="POST_LIST" bundle="${message}" var="post_list" />
+<fmt:message key="HOME" bundle="${message}" var="home" />
 
 <%
     PostRepository postRepository = (PostRepository) application.getAttribute("postRepository");
@@ -75,7 +76,7 @@
 
 <body>
 <header>
-    <h1>Posts List</h1><br>
+    <h1>${post_list}</h1><br>
 </header>
 <main>
     <table class="table">
@@ -99,7 +100,7 @@
         </c:forEach>
     </table>
 </main>
-<a href='/'>HOME</a><br />
+<a href='/'>${home}</a><br />
 </body>
 <footer>
 

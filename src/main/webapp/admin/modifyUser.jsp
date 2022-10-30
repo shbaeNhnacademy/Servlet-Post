@@ -12,10 +12,10 @@
 <fmt:setLocale value="<%=(String) application.getAttribute(\"locale\")%>"/>
 <fmt:setBundle basename="message" var="message"/>
 
-<fmt:message key="REGISTER" bundle="${message}" var="register" />
-<fmt:message key="SELECT" bundle="${message}" var="select" />
 <fmt:message key="NAME" bundle="${message}" var="name" />
 <fmt:message key="USER_LIST" bundle="${message}" var="u_list" />
+<fmt:message key="MODIFY" bundle="${message}" var="modify" />
+<fmt:message key="USER" bundle="${message}" var="user_" />
 
 <%
     String id = (String) request.getAttribute("id");
@@ -27,7 +27,7 @@
 </head>
 <body>
 
-<h2>Modify User for Administrator</h2>
+<h2>${modify} ${user_}</h2>
 <hr>
 
 <form method="post" action="/users/change.do" enctype="multipart/form-data">
@@ -40,8 +40,8 @@
     ${name} <input type="text"  name="name" placeholder="Name" />
     <br/>
     <br/>
-    <input type="file" name="file" value="${select}" /><br /><br />
-    <input type="submit" value="${register}" /><br />
+    <input type="file" id="files" name="file"/><br /><br />
+    <input type="submit" value="${modify}" /><br />
 </form>
 
 <br /> <br /> <a href='/admin/userList.jsp'>${u_list}</a><br />

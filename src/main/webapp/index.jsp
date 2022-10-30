@@ -18,6 +18,12 @@
 <fmt:message key="ADMIN_LINK" bundle="${message}" var="admin_page" />
 <fmt:message key="CURRENT_USERS" bundle="${message}" var="cur_users" />
 <fmt:message key="VISITORS" bundle="${message}" var="visitors" />
+<fmt:message key="REGISTER" bundle="${message}" var="register" />
+<fmt:message key="POST" bundle="${message}" var="post" />
+<fmt:message key="POST_LIST" bundle="${message}" var="post_list" />
+<fmt:message key="HOME" bundle="${message}" var="home" />
+<fmt:message key="ADMIN" bundle="${message}" var="admin_" />
+<fmt:message key="USER" bundle="${message}" var="user_" />
 
 <html>
 <head>
@@ -42,7 +48,7 @@
 %>
 <p>
 <h1>
-    Main
+    ${home}
 </h1>
 
 <span>
@@ -51,11 +57,11 @@
             <br /><a href="login.do">LOGIN</a> <br />
         </c:when>
         <c:when test="${not empty admin}">
-            <span>admin : </span><span style="font-weight: bold; color: red">${admin}&nbsp;&nbsp;</span>
+            <span>${admin_} : </span><span style="font-weight: bold; color: red">${admin}&nbsp;&nbsp;</span>
             <br /><a href="logout.do">LOGOUT</a> <br />
         </c:when>
         <c:otherwise>
-            <span>user : </span><span style="font-weight: bold; color: blue">${id}&nbsp;&nbsp;</span>
+            <span>${user_} : </span><span style="font-weight: bold; color: blue">${id}&nbsp;&nbsp;</span>
             <br /><a href="logout.do">LOGOUT</a> <br />
         </c:otherwise>
     </c:choose>
@@ -64,9 +70,9 @@
 
 
 <hr>
-<br /><a href="post/registerPost.jsp">Register Post</a> <br />
+<br /><a href="post/registerPost.jsp">${register} ${post}</a> <br />
 <br />
-<br /><a href="post/postList.jsp">Post List</a> <br />
+<br /><a href="post/postList.jsp">${post_list}</a> <br />
 <br />
 <br />
 <hr>

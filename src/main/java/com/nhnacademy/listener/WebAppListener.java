@@ -34,6 +34,8 @@ public class WebAppListener implements javax.servlet.ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext servletContext = sce.getServletContext();
+        //언어 default 영어로 지정
+        servletContext.setAttribute("locale", "en");
 
         // 관리자 생성 후 servletContext.속성에 set
         Admin admin = new Admin("admin","12345","관리자");

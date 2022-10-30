@@ -16,6 +16,7 @@
 
 <fmt:message key="NAME" bundle="${message}" var="name" />
 <fmt:message key="POST_LIST" bundle="${message}" var="post_list" />
+<fmt:message key="PROFILE_USER" bundle="${message}" var="pro" />
 
 <%
   pageContext.setAttribute("user", (User) request.getAttribute("user"));
@@ -28,6 +29,7 @@
     <title>View User Profile</title>
 </head>
 <body>
+<h1>${pro}</h1>
   <p> ${name} :  <input type="text"  name="name" value="${user.name}" placeholder="Name" readonly /></p>
   <p><img src="${CommandUtil.UPLOAD_DIR+=File.separator+=user.profileFileName}"  alt="profile"></p>
 

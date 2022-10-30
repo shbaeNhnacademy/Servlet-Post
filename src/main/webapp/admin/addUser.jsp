@@ -13,9 +13,9 @@
 <fmt:setBundle basename="message" var="message"/>
 
 <fmt:message key="REGISTER" bundle="${message}" var="register" />
-<fmt:message key="SELECT" bundle="${message}" var="select" />
 <fmt:message key="NAME" bundle="${message}" var="name" />
 <fmt:message key="ADMIN" bundle="${message}" var="admin" />
+<fmt:message key="USER_ADD" bundle="${message}" var="us_add" />
 
 <html>
 <head>
@@ -23,7 +23,7 @@
 </head>
 <body>
 
-<h2>Add User for Administrator</h2>
+<h2>${us_add}</h2>
 <hr>
 
 <form method="post" action="/users.do" enctype="multipart/form-data">
@@ -36,7 +36,7 @@
     ${name} <input type="text"  name="name" placeholder="Name" required />
     <br/>
     <br/>
-    <input type="file" name="file" value="${select}" /><br /><br />
+    <input type="file" name="file"/><br /><br />
     <input type="submit" value="${register}" /><br />
 
     <br /> <br /> <a href='/admin/admin.jsp'>${admin}</a><br />

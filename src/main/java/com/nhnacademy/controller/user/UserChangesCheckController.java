@@ -15,7 +15,7 @@ public class UserChangesCheckController implements Command {
         // 수정시 체크박스 데이터 두개면 1개만 골라달라는 메시지와 함께 다시 선택 userList.jsp로 이동
 
         ArrayList<String> list = Collections.list(req.getParameterNames());
-        if (list.size() > 2) {
+        if (list.size() > 2 || list.size() == 0) {
             return "/admin/userList.jsp";
         }else{
             String id = list.get(0); //name 설정을 한개만 해둠.
