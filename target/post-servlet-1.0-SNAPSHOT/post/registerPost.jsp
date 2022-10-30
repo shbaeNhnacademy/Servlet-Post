@@ -32,7 +32,7 @@
 <body>
     <form method="post" action="/posts.do">
         <p> ${title} : <input type="text" name="title"  /></p>
-        <p>${wr_id} :  <input type="text" name="id" value="${id}" readonly /></p>
+        <p>${wr_id} :  <input type="text" name="writer_id" value="${id}" readonly /></p>
         <br />
         <p>
             <p>${content} : </p>

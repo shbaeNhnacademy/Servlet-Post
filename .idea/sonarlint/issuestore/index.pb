@@ -71,17 +71,7 @@ i
 9src/main/java/com/nhnacademy/listener/WebAppListener.java,9/8/989214c247de039f5a84b0067d52b7bb84e81f7e
 j
 :src/main/java/com/nhnacademy/domain/post/ConcretePost.java,9/a/9a07187c763f0d4c15efd435e572cf2aee927b2f
-U
-%src/main/webapp/post/registerPost.jsp,2/3/230a5152f707799dd5b1d7c6a233e37f078377d7
-x
-Hsrc/main/java/com/nhnacademy/controller/post/PostRegisterController.java,0/c/0ca78fd9334f84d4ae77f28dc3e16177aaf934dc
-I
-src/main/webapp/index.jsp,8/e/8e6d3b70c9f5b02570779b0441540d45eceb0ded
 z
 Jsrc/test/java/com/nhnacademy/controller/LoginProcessingControllerTest.java,e/5/e5b1d2b1121dd1de0b23639bd7acf411c458537c
-f
-6src/main/java/com/nhnacademy/servlet/FrontServlet.java,e/b/eb7c4294570c17d616500d40630be8652d238d9c
 t
 Dsrc/main/java/com/nhnacademy/controller/post/PostViewController.java,3/7/378f18e67a79e8f58518f4a28afa50ee0b57bbce
-Q
-!src/main/webapp/post/postList.jsp,3/5/358e3eb43c18adc189ed2a6c36907c43d71b3a64
